@@ -24,7 +24,7 @@ jobs:
       - name: Install Puppeteer's bundled Chromium
         run: npx puppeteer install
 
-      - name: Run scraper
-        run: node run.js
-        env:
-          GOOGLE_SERVICE_ACCOUNT: ${{ secrets.GOOGLE_SERVICE_ACCOUNT }}
+    - name: Run scraper
+  run: node run.js
+  env:
+    GOOGLE_SERVICE_ACCOUNT_BASE64: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_BASE64 }}
