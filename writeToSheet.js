@@ -1,9 +1,14 @@
 const { google } = require('googleapis');
 
+// Decode base64-encoded service account from GitHub Secret
+const base64 = process.env.GOOGLE_SERVICE_ACCOUNT_BASE64;
+const rawJson = Buffer.from(base64, 'base64').toString('utf8');
+
 const auth = new google.auth.GoogleAuth({
-  credentials: JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT),
+  credentials: JSON.parse(rawJson),
   scopes: ['https://www.googleapis.com/auth/spreadsheets'],
 });
+
 
 async function writeToSheet(matches, sheetName) {
   const client = await auth.getClient();
