@@ -4,11 +4,11 @@ const { writeToSheet } = require('../writeToSheet');
 async function scrape() {
   console.log("🚀 Launching Puppeteer with system Chrome...");
 
-const browser = await puppeteer.launch({
-  headless: 'new',
-  executablePath: puppeteer.executablePath(), // ✅ use bundled Chromium
-  args: ['--no-sandbox', '--disable-setuid-sandbox'],
-});
+  const browser = await puppeteer.launch({
+    headless: 'new',
+    executablePath: puppeteer.executablePath(), // ✅ use bundled Chromium
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  });
 
   console.log("🟢 Chrome launched!");
 
@@ -49,7 +49,7 @@ const browser = await puppeteer.launch({
     );
   });
 
-  await writeToSheet(dvcshop);
+  await writeToSheet(matches, 'DVCSHOP');
   await browser.close();
   return matches;
 }
