@@ -1,9 +1,9 @@
 name: Scheduled Scraper
 
 on:
+  workflow_dispatch: # Allows manual runs from GitHub UI
   schedule:
-    - cron: '0 * * * *'  # runs every hour
-  workflow_dispatch:
+    - cron: '0 * * * *'  # Runs every hour on the hour
 
 jobs:
   run-scraper:
@@ -16,15 +16,12 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: '18'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
-      - name: Install Puppeteer's bundled Chromium
-        run: npx puppeteer install
-
-    - name: Run scraper
-  run: node run.js
-  env:
-    GOOGLE_SERVICE_ACCOUNT_BASE64: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_BASE64 }}
+      - name: Run scraper
+        env:
+          GOOGLE_SERVICE_ACCOUNT: ${{ secrets.GOOGLE_SERVICE_ACCOUNT }}
+        run: node run.js
