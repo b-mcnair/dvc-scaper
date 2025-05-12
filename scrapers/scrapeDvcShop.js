@@ -4,11 +4,11 @@ const { writeToSheet } = require('../writeToSheet');
 async function scrape() {
   console.log("🚀 Launching Puppeteer with system Chrome...");
 
-  const browser = await puppeteer.launch({
-    headless: "new",
-    executablePath: "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
-  });
+const browser = await puppeteer.launch({
+  headless: 'new',
+  executablePath: puppeteer.executablePath(), // ✅ Use bundled Chromium
+  args: ['--no-sandbox', '--disable-setuid-sandbox'],
+});
 
   console.log("🟢 Chrome launched!");
 
