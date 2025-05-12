@@ -6,7 +6,7 @@ async function scrape() {
 
 const browser = await puppeteer.launch({
   headless: 'new',
-  executablePath: puppeteer.executablePath(), // ✅ Use bundled Chromium
+  executablePath: puppeteer.executablePath(), // ✅ use bundled Chromium
   args: ['--no-sandbox', '--disable-setuid-sandbox'],
 });
 
